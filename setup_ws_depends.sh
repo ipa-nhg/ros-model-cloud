@@ -38,9 +38,9 @@ cd ..
 #done
 
 #cob experiment
-touch src/rplidar_ros/CATKIN_IGNORE
 touch src/cob_hand/cob_hand_bridge/CATKIN_IGNORE
-
+touch src/rplidar_ros/CATKIN_IGNORE
+touch src/cob_control/cob_obstacle_distance/CATKIN_IGNORE
 #catkin_make_isolated -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 -DCATKIN_BLACKLIST_PACKAGES="$pkg_blacklist"
 catkin_make_isolated --only-pkg-with-deps $1 -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-3.8 --merge
 
@@ -50,3 +50,4 @@ sed -i -e 's/\]\[/\,/g' build/compile_commands.json
 
 source devel_isolated/setup.bash
 
+roslaunch-dump src/cob_robots/cob_bringup/robots/cob4-10.launch robot:=cob4-10 robot_env:=empty > src/cob_robots/cob_bringup/robots/cob4_ros_tool_test.launch
